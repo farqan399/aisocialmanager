@@ -1,0 +1,3 @@
+import { Platform } from '@prisma/client';
+export type PublishPayload={text?:string; mediaUrl?:string; mediaType?:string; title?:string; description?:string; scheduledAt?:Date};
+export interface SocialProvider { platform:Platform; getProfile(accessToken:string):Promise<{id:string;name:string}>; refreshToken?(refreshToken:string):Promise<{accessToken:string;refreshToken?:string;expiresAt?:Date}>; createPost(accessToken:string,payload:PublishPayload):Promise<{id:string}>; getAnalytics?(accessToken:string,postId:string):Promise<Record<string,number>>; disconnect?(accessToken:string):Promise<void>; }

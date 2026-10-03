@@ -1,0 +1,2 @@
+import { Platform } from '@prisma/client'; import { HttpProvider } from './base';
+export class InstagramProvider extends HttpProvider { platform=Platform.INSTAGRAM; async getProfile(token:string){throw new Error('instagram OAuth/API integration requires official credentials and approved scopes');} async createPost(token:string,p:any){throw new Error('instagram publishing adapter is not configured. Add official API credentials and implement the current approved endpoint flow.');} }

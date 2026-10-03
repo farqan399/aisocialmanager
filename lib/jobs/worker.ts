@@ -1,0 +1,4 @@
+import { Worker } from 'bullmq'; import IORedis from 'ioredis'; import { db } from '../db';
+const connection=new IORedis(process.env.REDIS_URL||'redis://localhost:6379',{maxRetriesPerRequest:null});
+new Worker('publishing',async job=>{const post=await db.post.findUnique({where:{id:job.data.postId},include:{workspace:true}});if(!post)throw new Error('Post not found'); if(post.status==='PUBLISHED')return; await db.post.update({where:{id:post.id},data:{status:'PUBLISHING'}}); try { /* resolve provider + decrypt token + publish; omitted until credentials/scopes are configured */ throw new Error('Provider credentials/scopes not configured'); } catch(e:any){await db.post.update({where:{id:post.id},data:{status:'FAILED',failureReason:e.message}}); throw e;} },{connection});
+console.log('Publishing worker running');

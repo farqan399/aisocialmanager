@@ -1,0 +1,2 @@
+import { Platform } from '@prisma/client'; import { HttpProvider } from './base';
+export class PinterestProvider extends HttpProvider { platform=Platform.PINTEREST; async getProfile(token:string){throw new Error('pinterest OAuth/API integration requires official credentials and approved scopes');} async createPost(token:string,p:any){throw new Error('pinterest publishing adapter is not configured. Add official API credentials and implement the current approved endpoint flow.');} }

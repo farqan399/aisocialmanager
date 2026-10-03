@@ -1,0 +1,1 @@
+import { PrismaClient } from '@prisma/client'; const db=new PrismaClient(); async function main(){const w=await db.workspace.create({data:{name:'Demo Workspace',brand:{create:{brandName:'Demo Brand',industry:'Retail',language:'en',tone:'professional'}}}}); console.log('seeded',w.id)} main().finally(()=>db.$disconnect());

@@ -1,0 +1,2 @@
+import { Platform } from '@prisma/client'; import { HttpProvider } from './base';
+export class TiktokProvider extends HttpProvider { platform=Platform.TIKTOK; async getProfile(token:string){throw new Error('tiktok OAuth/API integration requires official credentials and approved scopes');} async createPost(token:string,p:any){throw new Error('tiktok publishing adapter is not configured. Add official API credentials and implement the current approved endpoint flow.');} }

@@ -1,0 +1,2 @@
+import { Platform } from '@prisma/client'; import { HttpProvider } from './base';
+export class XProvider extends HttpProvider { platform=Platform.X; async getProfile(token:string){throw new Error('x OAuth/API integration requires official credentials and approved scopes');} async createPost(token:string,p:any){throw new Error('x publishing adapter is not configured. Add official API credentials and implement the current approved endpoint flow.');} }
